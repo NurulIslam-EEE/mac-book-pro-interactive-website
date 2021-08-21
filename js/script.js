@@ -1,13 +1,18 @@
 //--------------- for memory------------
+
 const memoryEight = document.getElementById('memory-eight');
 const memorySixteen = document.getElementById('memory-sixteen');
 const extraMemoryCost = document.getElementById('extra-memory');
+
 //----------------for storage-----------
+
 const storageTwoFiftySix = document.getElementById('storage-two-fifty-six');
 const storageFiveTwelve = document.getElementById('storage-five-twelve');
 const storageOneTb = document.getElementById('storage-one-tb');
 const extraStorageCost = document.getElementById('extra-storage-cost');
+
 //----------for delivery------------
+
 const freeDelivery = document.getElementById('free-delivery');
 const paidDelivery = document.getElementById('paid-delivery');
 const deliveryCharge = document.getElementById('delivery-charge');
@@ -19,7 +24,7 @@ const totalAfterPromo = document.getElementById('final-total');
 
 const promoBtn = document.getElementById('promo-btn');
 
-//-----memory,storage,delivery cost calculation
+//-----memory,storage,delivery charge ----------
 
 function extraCost(item) {
     if (item == 8) {
@@ -48,35 +53,46 @@ function extraCost(item) {
     }
 }
 
-// ----------memory
+// ----------memory click event----------
+
 memoryEight.addEventListener('click', function () {
     extraCost(8);
+    promoBtn.disabled=false;
 });
 
 memorySixteen.addEventListener('click', function () {
     extraCost(16);
+    promoBtn.disabled=false;
 });
-//-----------storage
+
+//-----------storage click event---------
+
 storageTwoFiftySix.addEventListener('click', function () {
     extraCost(256);
+    promoBtn.disabled=false;
 });
 
 storageFiveTwelve.addEventListener('click', function () {
     extraCost(512);
+    promoBtn.disabled=false;
 });
 storageOneTb.addEventListener('click', function () {
     extraCost('1tb');
+    promoBtn.disabled=false;
 });
-//------------delivery Charge calculation------
+
+//------------delivery Charge click event------
 
 freeDelivery.addEventListener('click', function () {
     extraCost('free');
+    promoBtn.disabled=false;
 })
 paidDelivery.addEventListener('click', function () {
     extraCost('paid');
+    promoBtn.disabled=false;
 })
 
-
+// -----memory , storage, delivery charge calculation function------
 
 function totalCost() {
     const memoryCost = parseFloat(extraMemoryCost.innerText);
@@ -96,14 +112,13 @@ promoBtn.addEventListener('click', function () {
 });
 
 function totalWithPromoCode() {
-    // x = x + 1;
-    
     const promoInput = document.getElementById('promo-input').value;
     if (promoInput == 'stevekaku' ) {
         
         totalAfterPromo.innerText= parseFloat(totalAfterPromo.innerText) * 0.80;
          
         document.getElementById('promo-input').value='';
+        document.getElementById('promo-btn').disabled=true;
        
     } else {
         totalAfterPromo.innerText = parseFloat(totalAfterPromo.innerText);
